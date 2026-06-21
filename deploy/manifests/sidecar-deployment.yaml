@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: veraxis-agent-with-mam-sidecar
+  labels:
+    app: veraxis-agent
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: veraxis-agent
+  template:
+    metadata:
+      labels:
+        app: veraxis-agent
+    spec:
+      volumes:
+        - name: mam-wal
+          emptyDir: {}
+      containers:
+        - name: agent
+          image: example.com/agent:latest
+          env:
+            - name: MAM_ADDR
+              value: "127.0.0.1:9090"
+        - name: veraxis-mam-sidecar
+          image: example.com/veraxis-mam:latest
+          args:
+            - "--mode=sidecar"
+            - "--wal=/var/lib/veraxis/mam/revocation.vm"
+            - "--pubsub=nats://nats:4222"
+            - "--subject=veraxis.mam.revocations"
+            - "--max-version-lag=2"
+            - "--max-snapshot-lag-ms=200"
+            - "--cooling-lock=30s"
+          ports:
+            - name: grpc
+              containerPort: 9090
+            - name: health
+              containerPort: 8080
+          volumeMounts:
+            - name: mam-wal
+              mountPath: /var/lib/veraxis/mam
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: health
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz/snapshot
+              port: health
+            periodSeconds: 2
+            failureThreshold: 1

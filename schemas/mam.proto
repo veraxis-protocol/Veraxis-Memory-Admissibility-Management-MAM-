@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package veraxis.memory.v1;
+
+option go_package = "veraxis-memory-admissibility/pkg/rpc";
+
+service MemoryAdmissibilityService {
+  rpc EvaluateMemoryUse (EvaluateRequest) returns (EvaluateResponse);
+  rpc RegisterRevocationEvent (RevocationRequest) returns (RevocationResponse);
+}
+
+message RuntimeContext {
+  bytes tenant_hash = 1;
+  bytes domain_hash = 2;
+  uint64 required_lifecycle = 3;
+  uint64 prohibited_safety = 4;
+  uint64 allowed_use_classes = 5;
+  uint64 prohibited_use_blocks = 6;
+}
+
+message MemoryCandidate {
+  bytes memory_id = 1;
+  bytes memory_hash = 2;
+  uint64 memory_flags = 3;
+}
+
+message EvaluateRequest {
+  string session_id = 1;
+  string agent_id = 2;
+  RuntimeContext context = 3;
+  repeated MemoryCandidate candidates = 4;
+}
+
+message MemoryDecisionLeaf {
+  bytes memory_id = 1;
+  uint32 decision_code = 2;
+  string reason_code = 3;
+  bool injected = 4;
+}
+
+message EvaluateResponse {
+  string session_id = 1;
+  bytes merkle_root = 2;
+  repeated MemoryDecisionLeaf decisions = 3;
+  uint64 runtime_snapshot_version = 4;
+}
+
+message RevocationRequest {
+  bytes memory_id = 1;
+  uint32 event_type = 2;
+  uint32 reason_code = 3;
+  string operator_id = 4;
+  string source = 5;
+}
+
+message RevocationResponse {
+  bytes event_id = 1;
+  uint64 updated_snapshot_version = 2;
+  bytes updated_snapshot_hash = 3;
+}

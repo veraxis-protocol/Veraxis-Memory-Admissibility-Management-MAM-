@@ -1,0 +1,106 @@
+go test ./...
+RETURN: 0
+
+STDOUT:
+?   	veraxis-memory-admissibility/benchmarks/axis_fixtures	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-harness	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-bench	[no test files]
+?   	veraxis-memory-admissibility/pkg/rpc	[no test files]
+?   	veraxis-memory-admissibility/examples/clientloop	[no test files]
+?   	veraxis-memory-admissibility/pkg/audit	[no test files]
+?   	veraxis-memory-admissibility/pkg/axis	[no test files]
+?   	veraxis-memory-admissibility/pkg/bitmask	[no test files]
+?   	veraxis-memory-admissibility/pkg/evaluate	[no test files]
+?   	veraxis-memory-admissibility/pkg/gateway	[no test files]
+?   	veraxis-memory-admissibility/pkg/merkle	[no test files]
+?   	veraxis-memory-admissibility/pkg/ops	[no test files]
+?   	veraxis-memory-admissibility/pkg/orchestrator	[no test files]
+?   	veraxis-memory-admissibility/pkg/policy	[no test files]
+?   	veraxis-memory-admissibility/pkg/quarantine	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-server	[no test files]
+?   	veraxis-memory-admissibility/pkg/sessionmap	[no test files]
+?   	veraxis-memory-admissibility/pkg/tenant	[no test files]
+ok  	veraxis-memory-admissibility/benchmarks	0.012s [no tests to run]
+ok  	veraxis-memory-admissibility/tests/adversarial	0.025s
+ok  	veraxis-memory-admissibility/tests/integration	0.140s
+ok  	veraxis-memory-admissibility/tests/unit	0.021s
+
+
+STDERR:
+
+
+go run ./cmd/mam-harness
+RETURN: 0
+
+STDOUT:
+Initializing Veraxis Admissible Memory Control Harness...
+✔ Step 1 & 2: Gateway interception verified. Rogue content successfully stripped.
+✔ Step 3: Single-turn Session MAP generated and signed.
+✔ Step 4: Audit verification replay matched completely.
+
+=======================================================
+VERAXIS STATUS: SUCCESS. Evidence control chain closed.
+=======================================================
+
+
+STDERR:
+
+
+go run ./examples/clientloop
+RETURN: 0
+
+STDOUT:
+VERAXIS CLIENT LOOP: SUCCESS
+InferenceID: inf_local_0001
+Model: gpt-4o
+TotalTokens: 288
+
+
+STDERR:
+
+
+go run ./cmd/mam-server
+RETURN: 0
+
+STDOUT:
+MAM server edge initialized. Build with official gRPC bindings when google.golang.org/grpc is available.
+
+
+STDERR:
+
+
+go run ./benchmarks/axis_fixtures
+RETURN: 0
+
+STDOUT:
+✔ Step 14B Complete: Synthetic testing terrain committed to fixtures.json.
+
+
+STDERR:
+
+
+go test -bench=. -benchmem ./benchmarks
+RETURN: 0
+
+STDOUT:
+goos: linux
+goarch: amd64
+pkg: veraxis-memory-admissibility/benchmarks
+cpu: AMD EPYC 9V74 80-Core Processor                
+BenchmarkEvaluateMemoryHotPath-56    	36456254	        33.35 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCompileLineageRecord-56     	 4981009	       243.4 ns/op	      32 B/op	       1 allocs/op
+PASS
+ok  	veraxis-memory-admissibility/benchmarks	2.723s
+
+
+STDERR:
+
+
+Documentation:
+- README.md rewritten as deployment-facing root reference.
+- docs/architecture added.
+- docs/deployment-checklist.md added.
+- docs/ticket-22-platform-documentation.md added.
+
+Dependency check:
+go.mod remains standard-library only in this sandbox.

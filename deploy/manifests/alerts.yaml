@@ -1,0 +1,35 @@
+groups:
+  - name: veraxis-mam-authority-plane
+    rules:
+      - alert: MAM_LEDGER_CHECKSUM_ERROR
+        expr: mam_ledger_checksum_errors_total > 0
+        for: 0s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Veraxis MAM ledger checksum error detected"
+          action: "Lock node execution and route traffic to healthy instances."
+      - alert: MAM_SNAPSHOT_OUT_OF_SYNC
+        expr: mam_snapshot_version_lag > 5
+        for: 30s
+        labels:
+          severity: high
+        annotations:
+          summary: "Veraxis MAM snapshot out of sync"
+          action: "Mark readiness unhealthy and trigger catchup resync."
+      - alert: MAM_BOOT_REPLAY_TIMED_OUT
+        expr: mam_boot_replay_seconds > 10
+        for: 0s
+        labels:
+          severity: high
+        annotations:
+          summary: "Veraxis MAM boot replay timed out"
+          action: "Terminate container and inspect storage attachments."
+      - alert: MAM_REVOCATION_FSYNC_FAILURE
+        expr: mam_revocation_fsync_failures_total > 0
+        for: 0s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Veraxis MAM revocation fsync failure"
+          action: "Fail closed and isolate writer."

@@ -1,0 +1,15 @@
+{
+  "version": "0.1",
+  "session_map_id": "01000000000000000000000000000000",
+  "session_id": "sess_88321034_consequence",
+  "agent_id": "agent_customer_support_finance",
+  "actor_id": "actor_001",
+  "merkle_root": "a4fe390234bc5ddfa12209439281aefca90394821a8cd348912cdfa8319efc21",
+  "signature": "placeholder-ed25519-attestation-value",
+  "signing_key_id": "key_prod_us_east_01",
+  "leaf_metrics": {
+    "total": 2,
+    "injected": 1,
+    "stripped": 1
+  }
+}

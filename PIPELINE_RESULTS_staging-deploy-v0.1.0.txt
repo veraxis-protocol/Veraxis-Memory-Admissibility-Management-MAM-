@@ -1,0 +1,110 @@
+Branch: staging/deploy-v0.1.0
+Reference: v0.1.0-reference
+
+go test ./...
+RETURN: 0
+
+STDOUT:
+?   	veraxis-memory-admissibility/benchmarks/axis_fixtures	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-bench	[no test files]
+ok  	veraxis-memory-admissibility/benchmarks	(cached) [no tests to run]
+?   	veraxis-memory-admissibility/cmd/mam-harness	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-server	[no test files]
+?   	veraxis-memory-admissibility/cmd/staging-verify	[no test files]
+?   	veraxis-memory-admissibility/examples/clientloop	[no test files]
+?   	veraxis-memory-admissibility/pkg/audit	[no test files]
+?   	veraxis-memory-admissibility/pkg/axis	[no test files]
+?   	veraxis-memory-admissibility/pkg/rpc	[no test files]
+?   	veraxis-memory-admissibility/pkg/evaluate	[no test files]
+?   	veraxis-memory-admissibility/pkg/sessionmap	[no test files]
+?   	veraxis-memory-admissibility/pkg/merkle	[no test files]
+?   	veraxis-memory-admissibility/pkg/ops	[no test files]
+?   	veraxis-memory-admissibility/pkg/orchestrator	[no test files]
+?   	veraxis-memory-admissibility/pkg/policy	[no test files]
+?   	veraxis-memory-admissibility/pkg/quarantine	[no test files]
+?   	veraxis-memory-admissibility/pkg/bitmask	[no test files]
+?   	veraxis-memory-admissibility/pkg/gateway	[no test files]
+?   	veraxis-memory-admissibility/pkg/tenant	[no test files]
+ok  	veraxis-memory-admissibility/tests/adversarial	(cached)
+ok  	veraxis-memory-admissibility/tests/integration	(cached)
+ok  	veraxis-memory-admissibility/tests/unit	(cached)
+
+
+STDERR:
+
+
+go run ./cmd/staging-verify
+RETURN: 0
+
+STDOUT:
+Veraxis MAM Staging Deployment Verification Harness v0.1.0-reference
+ALL STAGING GATES VERIFIED. RELEASE VALIDATED.
+
+
+STDERR:
+
+
+STAGING_VERIFICATION_REPORT_v0.1.0.json:
+{
+  "release_tag": "v0.1.0-reference",
+  "reference_hash": "sha256:16746b2dce7f8d499d632cccee91563d0b4f44bdb51fade72a1e6fe1ab6a1605",
+  "wal_replay_result": "pass",
+  "runtime_snapshot_hash": "3550393782597400405676c8a831402ac7e124490f2fb84c86d38c0d3786311f",
+  "runtime_snapshot_version": 200,
+  "readiness_result": "pass",
+  "handoff_result": "pass",
+  "backpressure_result": "pass",
+  "poison_drill_result": "pass",
+  "session_map_id": "bb000000000000000000000000000000",
+  "session_map_merkle_root": "289d8d1dbd5e9a2dc9f7b8260fe44d2013b22cbbf82b22f7686eb5eb4ed304c5",
+  "mcr_id": "31000000000000000000000000000000",
+  "mcr_lineage_digest": "245143461ce8eac8fefa90b90238d011fcad0de07d44d850ea5a07e800da7788",
+  "audit_replay_result": "pass",
+  "raw_context_bypass_detected": false,
+  "final_status": "STAGING_ACCEPTED",
+  "verified_at": "2026-06-21T01:27:29.778645819Z"
+}
+
+
+go test ./tests/adversarial
+RETURN: 0
+
+STDOUT:
+ok  	veraxis-memory-admissibility/tests/adversarial	(cached)
+
+
+STDERR:
+
+
+go run ./cmd/mam-harness
+RETURN: 0
+
+STDOUT:
+Initializing Veraxis Admissible Memory Control Harness...
+✔ Step 1 & 2: Gateway interception verified. Rogue content successfully stripped.
+✔ Step 3: Single-turn Session MAP generated and signed.
+✔ Step 4: Audit verification replay matched completely.
+
+=======================================================
+VERAXIS STATUS: SUCCESS. Evidence control chain closed.
+=======================================================
+
+
+STDERR:
+
+
+go test -bench=. -benchmem ./benchmarks
+RETURN: 0
+
+STDOUT:
+goos: linux
+goarch: amd64
+pkg: veraxis-memory-admissibility/benchmarks
+cpu: AMD EPYC 9V74 80-Core Processor                
+BenchmarkEvaluateMemoryHotPath-56    	36300956	        33.11 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCompileLineageRecord-56     	 4875636	       245.8 ns/op	      32 B/op	       1 allocs/op
+PASS
+ok  	veraxis-memory-admissibility/benchmarks	2.700s
+
+
+STDERR:

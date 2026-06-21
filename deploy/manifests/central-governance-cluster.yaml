@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: veraxis-mam-governance
+  labels:
+    app: veraxis-mam-governance
+spec:
+  serviceName: veraxis-mam-governance
+  replicas: 3
+  selector:
+    matchLabels:
+      app: veraxis-mam-governance
+  template:
+    metadata:
+      labels:
+        app: veraxis-mam-governance
+    spec:
+      containers:
+        - name: veraxis-mam
+          image: example.com/veraxis-mam:latest
+          args:
+            - "--mode=central"
+            - "--wal=/var/lib/veraxis/mam/revocation.vm"
+            - "--lease-backend=etcd"
+            - "--replay-before-ready=true"
+          ports:
+            - name: grpc
+              containerPort: 9090
+            - name: health
+              containerPort: 8080
+          volumeMounts:
+            - name: mam-wal
+              mountPath: /var/lib/veraxis/mam
+          readinessProbe:
+            httpGet:
+              path: /healthz/snapshot
+              port: health
+            periodSeconds: 2
+            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: health
+            periodSeconds: 5
+  volumeClaimTemplates:
+    - metadata:
+        name: mam-wal
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: veraxis-mam-governance
+spec:
+  selector:
+    app: veraxis-mam-governance
+  ports:
+    - name: grpc
+      port: 9090
+      targetPort: grpc
+    - name: health
+      port: 8080
+      targetPort: health

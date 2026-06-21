@@ -1,0 +1,117 @@
+Branch: sdk/typescript-v0.1.0
+Reference: v0.1.0-reference
+
+node --test sdk/typescript/tests/*.test.mjs
+RETURN: 0
+
+STDOUT:
+TAP version 13
+# Subtest: sizing bounds exception for tenantHash
+ok 1 - sizing bounds exception for tenantHash
+  ---
+  duration_ms: 1.318197
+  type: 'test'
+  ...
+# Subtest: sizing bounds exception for memoryId
+ok 2 - sizing bounds exception for memoryId
+  ---
+  duration_ms: 0.284617
+  type: 'test'
+  ...
+# Subtest: inline content scrubbing uses canonical tombstone
+ok 3 - inline content scrubbing uses canonical tombstone
+  ---
+  duration_ms: 2.353987
+  type: 'test'
+  ...
+# Subtest: clean memory passes without scrub
+ok 4 - clean memory passes without scrub
+  ---
+  duration_ms: 0.235243
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 113.510691
+
+
+STDERR:
+
+
+tsc -p sdk/typescript/tsconfig.json
+RETURN: 0
+
+STDOUT:
+
+
+STDERR:
+
+
+go test ./...
+RETURN: 0
+
+STDOUT:
+?   	veraxis-memory-admissibility/benchmarks/axis_fixtures	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-bench	[no test files]
+ok  	veraxis-memory-admissibility/benchmarks	(cached) [no tests to run]
+?   	veraxis-memory-admissibility/cmd/mam-harness	[no test files]
+?   	veraxis-memory-admissibility/cmd/mam-server	[no test files]
+?   	veraxis-memory-admissibility/cmd/staging-verify	[no test files]
+?   	veraxis-memory-admissibility/examples/clientloop	[no test files]
+?   	veraxis-memory-admissibility/pkg/audit	[no test files]
+?   	veraxis-memory-admissibility/pkg/rpc	[no test files]
+?   	veraxis-memory-admissibility/pkg/sessionmap	[no test files]
+?   	veraxis-memory-admissibility/pkg/evaluate	[no test files]
+?   	veraxis-memory-admissibility/pkg/gateway	[no test files]
+?   	veraxis-memory-admissibility/pkg/merkle	[no test files]
+?   	veraxis-memory-admissibility/pkg/ops	[no test files]
+?   	veraxis-memory-admissibility/pkg/orchestrator	[no test files]
+?   	veraxis-memory-admissibility/pkg/policy	[no test files]
+?   	veraxis-memory-admissibility/pkg/quarantine	[no test files]
+?   	veraxis-memory-admissibility/pkg/axis	[no test files]
+?   	veraxis-memory-admissibility/pkg/bitmask	[no test files]
+?   	veraxis-memory-admissibility/pkg/tenant	[no test files]
+ok  	veraxis-memory-admissibility/tests/adversarial	(cached)
+ok  	veraxis-memory-admissibility/tests/integration	(cached)
+ok  	veraxis-memory-admissibility/tests/unit	(cached)
+
+
+STDERR:
+
+
+go run ./cmd/staging-verify
+RETURN: 0
+
+STDOUT:
+Veraxis MAM Staging Deployment Verification Harness v0.1.0-reference
+ALL STAGING GATES VERIFIED. RELEASE VALIDATED.
+
+
+STDERR:
+
+
+go test -bench=. -benchmem ./benchmarks
+RETURN: 0
+
+STDOUT:
+goos: linux
+goarch: amd64
+pkg: veraxis-memory-admissibility/benchmarks
+cpu: AMD EPYC 9V74 80-Core Processor                
+BenchmarkEvaluateMemoryHotPath-56    	36254580	        33.43 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCompileLineageRecord-56     	 4851310	       244.7 ns/op	      32 B/op	       1 allocs/op
+PASS
+ok  	veraxis-memory-admissibility/benchmarks	2.701s
+
+
+STDERR:
+
+
+Dependency note:
+The TypeScript package declares official @grpc/grpc-js/google-protobuf dependencies in package.json for connected environments. Local tests use MockMemoryAdmissibilityTransport and require no network daemon.

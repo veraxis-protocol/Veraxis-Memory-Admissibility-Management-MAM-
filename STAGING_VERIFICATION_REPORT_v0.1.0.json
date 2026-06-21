@@ -1,0 +1,19 @@
+{
+  "release_tag": "v0.1.0-reference",
+  "reference_hash": "sha256:6d57c020c720b3cea2b2a598132ba963b7ad4b35ba2b9f0ba6fa287139381e2b",
+  "wal_replay_result": "pass",
+  "runtime_snapshot_hash": "3550393782597400405676c8a831402ac7e124490f2fb84c86d38c0d3786311f",
+  "runtime_snapshot_version": 200,
+  "readiness_result": "pass",
+  "handoff_result": "pass",
+  "backpressure_result": "pass",
+  "poison_drill_result": "pass",
+  "session_map_id": "bb000000000000000000000000000000",
+  "session_map_merkle_root": "289d8d1dbd5e9a2dc9f7b8260fe44d2013b22cbbf82b22f7686eb5eb4ed304c5",
+  "mcr_id": "31000000000000000000000000000000",
+  "mcr_lineage_digest": "cbf3d980deb8a2adefe379621d2e2691efc562fcf747e0731d002d89b8229a70",
+  "audit_replay_result": "pass",
+  "raw_context_bypass_detected": false,
+  "final_status": "STAGING_ACCEPTED",
+  "verified_at": "2026-06-21T01:44:23.128584518Z"
+}
