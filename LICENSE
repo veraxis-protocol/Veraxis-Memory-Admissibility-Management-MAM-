@@ -1,3 +1,42 @@
-Copyright 2026 Veraxis
+Here is a legally crisp, highly scannable **Source-Available Evaluation License** tailored for your repository. It explicitly draws a hard boundary against production and commercial exploitation while allowing open engineering evaluation and testing.
 
-Internal draft scaffold. License terms to be finalized before public release.
+You can drop this directly into a `LICENSE` or `LICENSE.md` file in your root directory.
+
+---
+
+# VERAXIS SOURCE-AVAILABLE EVALUATION LICENSE (v1.0)
+
+Copyright (c) 2026 Veraxis Core Systems. All rights reserved.
+
+### 1. Purpose and Scope
+
+This License governs the use of the Veraxis Memory Admissibility Management (MAM) software framework and associated documentation (the "Software"). The primary intent of this License is to allow public engineering evaluation, research, and benchmarking, while strictly prohibiting commercialization, production deployment, and revenue-generating activities.
+
+### 2. Permitted Evaluation Uses
+
+Subject to the terms of this License, you are granted a non-exclusive, non-transferable, royalty-free, revocable license to:
+
+* Download, view, compile, and execute the Software locally.
+* Utilize the Software **solely for internal evaluation, testing, security auditing, and performance benchmarking**.
+* Modify the source code exclusively for local evaluation purposes, provided all copyright notices are fully preserved.
+
+### 3. Prohibited Commercial Uses
+
+**Any use of the Software outside of an isolated testing/evaluation environment is strictly prohibited.** Under this License, you explicitly **MAY NOT**:
+
+* Deploy the Software into active production environments or use it to manage live commercial agent workflows.
+* Bundle, embed, or integrate the Software into any commercial product, service, or software-as-a-service (SaaS) platform.
+* Utilize the Software for any direct or indirect revenue-generating or commercial business operations.
+* Redistribute, sublicense, rent, or lease the Software or modified versions thereof to third parties.
+
+### 4. Commercial Licensing Threshold
+
+Any deployment of the Software in a production cluster, multi-tenant cloud environment, or revenue-generating pipeline requires a separate, written **Commercial Production License** from the copyright holder.
+
+### 5. Termination
+
+This License and your right to use the Software terminate automatically if you violate any of its terms or restrictions. Upon termination, you must immediately cease all use of the Software and destroy all copies in your possession.
+
+### 6. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
