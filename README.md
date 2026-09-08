@@ -4,6 +4,20 @@ Veraxis Admissible Memory Management (MAM) governs which machine memories may in
 
 Memory is not passive context. Memory is delegated influence over future behavior. If memory changes what an agent may believe, output, or do, memory is part of the authority path.
 
+## Role in Open Institutional Computation
+
+**Category:** Open Institutional Computation  
+**This component:** Admissibility gate for machine memory — deciding which stored memories may influence future machine behavior, and binding that decision to a provable lineage  
+**Upstream:** Policy and runtime snapshots, and any institutional authority or control state established elsewhere through authorized interpretation and admission; the Veraxis reference path for that upstream problem is [OIC — Open Institutional Compiler](https://github.com/veraxis-protocol/Institutional-Compiler)  
+**Downstream:** Lineage records and the EEP/AEP linkage that makes downstream evidence accountable to the Session MAP  
+**Canonical category thesis:** https://github.com/veraxis-protocol/institutional-continuity/blob/main/THESIS.md
+
+"Memory is part of the authority path" means memory can *carry* authority forward, not that it can *create* it. MAM governs whether a memory is admissible for reliance; it does not interpret governing sources, perform institutional admission, or originate the institutional authority a memory may reference.
+
+An Authorization Evidence Pack is a downstream artifact in that path, not its origin. As `docs/architecture/03-cryptographic-custody-chain.md` already states, this repository implements the linkage primitive that makes EEP and AEP accountable to the Session MAP — not full EEP or AEP protocol storage.
+
+Architectural role does not imply production readiness; the benchmark envelope, production invariants and release notes in this repository define the exact demonstrated scope.
+
 ## Production Invariants
 
 - Tenant equality first.
